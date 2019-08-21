@@ -1,20 +1,33 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.IO;
 
 namespace FileMe.Models
 {
     public class Dct : Folder
     {
-        private List<File> versions;
+        public string FilePath { get; set; }
 
-        private File curFile;
+        public string Type { get; private set; }
 
-        public Dct(string path, Person author) 
+        public Person Author { get; set; }
+
+        public Dct() { }
+
+        public Dct(string filePath, Person author, DateTime creationDate) 
         {
-            versions.Add(new File(path, author));
-            curFile = versions[versions.Count];
+            FilePath = filePath;
+            SetTypeAndTitleFile(Path.GetFileName(FilePath));
+            Author = author;
+            CreationDate = creationDate;
+            //? ParentFolder = 
+        }
 
-            Title = curFile.Title;
-            creationDate = curFile.CreationDate;
+        private void SetTypeAndTitleFile(string fileName)
+        {
+            int ind = fileName.LastIndexOf('.');
+
+            Title = fileName.Substring(0, ind);
+            Type = fileName.Substring(ind + 1);
         }
     }
 }

@@ -1,28 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FileMe.Models
+﻿namespace FileMe.Models
 {
     public class Access
     {
-        private Folder folder;
+        public Folder Folder { get; set; }
 
-        private AccessLevel accessLevel;
+        public AccessLevels AccessLevel { get; set; }
 
-        private Groups group;
+        public Group Group { get; set; }
 
-        public Access(Folder folder, AccessLevel accessLevel, Groups group)
+        public Access() { }
+
+        public Access(Folder folder, AccessLevels accessLevel, Group group)
         {
-            this.folder = folder;
-            this.accessLevel = accessLevel;
-            this.group = group;
+            Folder = folder;
+            AccessLevel = accessLevel;
+            Group = group;
         }
     }
 
-    public enum AccessLevel
+    public enum AccessLevels
     {
         Reading,
         Writing,

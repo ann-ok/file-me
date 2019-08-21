@@ -1,59 +1,23 @@
-﻿using System;
-
-namespace FileMe.Models
+﻿namespace FileMe.Models
 {
     public class Person
     {
-        private Groups group;
+        public int Id { get; set; }
 
-        private int Id { get; set; }
+        public string Login { get; set; }
 
-        private string login;
+        public string Password { get; set; }
 
-        private string Login
+        public Group Group { get; set; }
+
+        public Person() { }
+
+        public Person(int id, string login, string password, Group group)
         {
-            get { return login; }
-            set
-            {
-                if (value == "") throw new Exception();
-                login = value;
-            }
-        }
-
-        private string password;
-
-        private string Password
-        {
-            get { return password; }
-            set
-            {
-                if (value == "") throw new Exception();
-                password = value;
-            }
-        }
-
-        public Person(string login, string password, Groups group)
-        {
-            Id = GetId();
+            Id = id;
             Login = login;
             Password = password;
-            this.group = group;
+            Group = group;
         }
-
-        private int GetId()
-        {
-            return 1;
-        }
-
-        public string GetLogin() => Login;
-
-        public static implicit operator string(Person person) => person.GetLogin();
-    }
-
-    //Сделаны пока перечислением, а не отдельным классом, так как пока не вижу необходимости в классе.
-    public enum Groups
-    {
-        User,
-        Admin
     }
 }
