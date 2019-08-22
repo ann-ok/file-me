@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace FileMe.Models.Repositories
 {
+    [Repositories]
     public class Repository<T>
         where T: class
     {

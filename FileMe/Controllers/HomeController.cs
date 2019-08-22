@@ -1,4 +1,5 @@
-﻿using FileMe.Models.Repositories;
+﻿using FileMe.Models;
+using FileMe.Models.Repositories;
 using System;
 using System.Web.Mvc;
 
@@ -6,7 +7,6 @@ namespace FileMe.Controllers
 {
     public class HomeController : Controller
     {
-        //когда напишем регистрацию
         private PersonRepository personRepository;
 
         public HomeController(PersonRepository personRepository)
@@ -15,7 +15,6 @@ namespace FileMe.Controllers
         }
 
         // GET: Home
-        //гет запрост
         //метод который возвращает представление. Модель он будет искать в папке views.
         public ActionResult Index()
         {

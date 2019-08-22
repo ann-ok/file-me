@@ -3,6 +3,7 @@ using Autofac.Integration.Mvc;
 using FileMe.App_Start;
 using FileMe.Controllers;
 using FileMe.Models;
+using FileMe.Models.Repositories;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using Microsoft.Owin;
@@ -65,14 +66,23 @@ namespace FileMe.App_Start
             containerBuilder.RegisterControllers(Assembly.GetAssembly(typeof(HomeController)));
             containerBuilder.RegisterModule(new AutofacWebTypesModule());
 
+            //регистрация репозиториев
+            var types = typeof(Repository<>).Assembly.GetTypes();
+            foreach(var type in types)
+            {
+                var repositoriesAttribute = type.GetCustomAttribute<RepositoriesAttribute>(true);
+                if (repositoriesAttribute == null)
+                    continue;
+
+                containerBuilder.RegisterType(type).InstancePerRequest().AsSelf();
+            }
+
             var container = containerBuilder.Build();
             #endregion
 
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
 
             app.UseAutofacMiddleware(container);
-
-            //надо будет зарегистрировать репозиторий.
         }
     }
 }
