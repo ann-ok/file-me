@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileMe", "FileMe\FileMe.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileMe.Models", "FileMe.Models\FileMe.Models.csproj", "{002B96EE-A79F-458D-B6BB-67E10C721359}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileMe.Mapping", "FileMe.Mapping\FileMe.Mapping.csproj", "{3DD11A81-F8BB-454B-98C3-2DAD811341E3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{002B96EE-A79F-458D-B6BB-67E10C721359}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{002B96EE-A79F-458D-B6BB-67E10C721359}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{002B96EE-A79F-458D-B6BB-67E10C721359}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3DD11A81-F8BB-454B-98C3-2DAD811341E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DD11A81-F8BB-454B-98C3-2DAD811341E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DD11A81-F8BB-454B-98C3-2DAD811341E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DD11A81-F8BB-454B-98C3-2DAD811341E3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
