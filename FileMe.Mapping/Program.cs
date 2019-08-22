@@ -54,6 +54,12 @@ namespace FileMe.Mapping
 
             var g = new Group { Id = 3, Title = "гру546" };
             Person person1 = new Person { Group = g, Login = "23t456", Password = "ert" };
+<<<<<<< HEAD
+=======
+            //Person person2 = new Person { Group = g, Login = "25t", Password = "ert" };
+
+            
+>>>>>>> mapping
 
             var session = container.Resolve<ISession>();
             using (var tran = session.BeginTransaction())
