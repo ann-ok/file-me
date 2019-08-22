@@ -1,17 +1,20 @@
-﻿namespace FileMe.Models
+﻿using FluentNHibernate.Mapping;
+
+namespace FileMe.Models
 {
     public class DctVersion
     {
-        public int Id { get; set; }
+        public virtual int Id { get; set; }
 
-        public Folder Document { get; set; }
+        public virtual Folder Document { get; set; }
+    }
 
-        DctVersion() { }
-
-        public DctVersion(int id, Folder document)
+    public class DctVersionMap: ClassMap<DctVersion>
+    {
+        public DctVersionMap()
         {
-            Id = id;
-            Document = document;
+            Id(u => u.Id).GeneratedBy.HiLo("100");
+            References(u => u.Document).Cascade.SaveUpdate();
         }
     }
 }

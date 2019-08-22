@@ -1,17 +1,25 @@
-﻿namespace FileMe.Models
+﻿using FluentNHibernate.Mapping;
+using System.Collections.Generic;
+
+namespace FileMe.Models
 {
     public class Group
     {
-        public int Id { get; set; }
+        public virtual long Id { get; set; }
 
-        public string Title { get; set; }
+        public virtual string Title { get; set; }
 
-        public Group() { }
+        //виртуальная связь, которая будет создаваться NHibernate
+        public virtual IList<Person> People { get; set; }
+    }
 
-        public Group(int id, string title)
+    public class GroupMap: ClassMap<Group>
+    {
+        public GroupMap()
         {
-            Id = id;
-            Title = title;
+            Id(u => u.Id); //.GeneratedBy.HiLo("100");
+            Map(u => u.Title).Length(100);
+            HasMany(u => u.People).AsList().Inverse();
         }
     }
 }

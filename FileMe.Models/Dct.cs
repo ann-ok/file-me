@@ -1,33 +1,24 @@
-﻿using System;
-using System.IO;
+﻿using FluentNHibernate.Mapping;
 
 namespace FileMe.Models
 {
     public class Dct : Folder
     {
-        public string FilePath { get; set; }
+        public virtual string FilePath { get; set; }
 
-        public string Type { get; private set; }
+        //public virtual string Type => FilePath.Substring(FilePath.LastIndexOf('.') + 1);
+        public virtual string Type { get; set; }
 
-        public Person Author { get; set; }
+        public virtual Person Author { get; set; }
 
-        public Dct() { }
-
-        public Dct(string filePath, Person author, DateTime creationDate) 
+        public class DctMap: SubclassMap<Dct>
         {
-            FilePath = filePath;
-            SetTypeAndTitleFile(Path.GetFileName(FilePath));
-            Author = author;
-            CreationDate = creationDate;
-            //? ParentFolder = 
-        }
-
-        private void SetTypeAndTitleFile(string fileName)
-        {
-            int ind = fileName.LastIndexOf('.');
-
-            Title = fileName.Substring(0, ind);
-            Type = fileName.Substring(ind + 1);
+            public DctMap()
+            {
+                Map(u => u.FilePath).Length(500);
+                Map(u => u.Type).Length(100);
+                References(u => u.Author).Cascade.SaveUpdate();
+            }
         }
     }
 }

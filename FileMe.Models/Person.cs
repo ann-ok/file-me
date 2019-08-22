@@ -1,23 +1,31 @@
-﻿namespace FileMe.Models
+﻿using FluentNHibernate.Mapping;
+using System.Collections.Generic;
+
+namespace FileMe.Models
 {
     public class Person
     {
-        public int Id { get; set; }
+        public virtual int Id { get; set; }
 
-        public string Login { get; set; }
+        public virtual string Login { get; set; }
 
-        public string Password { get; set; }
+        public virtual string Password { get; set; }
 
-        public Group Group { get; set; }
+        public virtual Group Group { get; set; }
 
-        public Person() { }
+        public virtual IList<Dct> Dcts { get; set; }
+    }
 
-        public Person(int id, string login, string password, Group group)
+    public class PersonMap: ClassMap<Person>
+    {
+        public PersonMap()
         {
-            Id = id;
-            Login = login;
-            Password = password;
-            Group = group;
+            Id(u => u.Id).GeneratedBy.HiLo("100");
+            Map(u => u.Login).Length(100);
+            Map(u => u.Password).Length(100);
+            References(u => u.Group).Cascade.SaveUpdate();
+            HasMany(u => u.Dcts).AsList().Inverse();
         }
     }
+
 }

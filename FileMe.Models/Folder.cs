@@ -1,25 +1,31 @@
-﻿using System;
+﻿using FluentNHibernate.Mapping;
+using System;
+using System.Collections.Generic;
 
 namespace FileMe.Models
 {
     public class Folder
     {
-        public int Id { get; set; }
+        public virtual int Id { get; set; }
 
-        public string Title { get; set; }
+        public virtual string Title { get; set; }
 
-        public DateTime CreationDate { get; set; }
+        public virtual DateTime CreationDate { get; set; }
 
-        public Folder ParentFolder { get; set; }
+        //public virtual Folder ParentFolder { get; set; }
 
-        public Folder() { }
+        public virtual IList<DctVersion> Versions { get; set; }
+    }
 
-        public Folder(int id, string title, DateTime date, Folder parentFolder)
+    public class FolderMap: ClassMap<Folder>
+    {
+        public FolderMap()
         {
-            Id = id;
-            Title = title;
-            CreationDate = date;
-            ParentFolder = parentFolder;
+            Id(u => u.Id).GeneratedBy.HiLo("100");
+            Map(u => u.Title).Length(100);
+            Map(u => u.CreationDate);
+            //References(u => u.ParentFolder).Cascade.SaveUpdate();
+            HasMany(u => u.Versions).AsList().Inverse();
         }
     }
 }
