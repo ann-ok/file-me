@@ -2,8 +2,8 @@
 using Autofac.Integration.Mvc;
 using FileMe.App_Start;
 using FileMe.Controllers;
-using FileMe.Models;
-using FileMe.Models.Repositories;
+using FileMe.DAL;
+using FileMe.DAL.Repositories;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using Microsoft.Owin;
@@ -24,14 +24,16 @@ namespace FileMe.App_Start
     {
         public static void Configuration(IAppBuilder app)
         {
-            //требуется для Owin, переносим из Global.asax
+            //копируем из Global.asax
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
-            //строка подключения указывается в Web.config
+            //строка подключения
             var connectionString = ConfigurationManager.ConnectionStrings["MSSQL"];
             if (connectionString == null)
+            {
                 throw new Exception("Не найдена строка подключения");
+            }
 
             #region Настройка контейнера
             //будет отвечать за связь объектов с БД
@@ -48,10 +50,8 @@ namespace FileMe.App_Start
                         .ConnectionString(connectionString.ConnectionString)
                         .Dialect<MsSql2012Dialect>())
                     //поиск всех маппингов из сборки в которой есть указанный класс
-                    .Mappings(m => m.FluentMappings.AddFromAssemblyOf<Person>())
+                    .Mappings(m => m.FluentMappings.AddFromAssemblyOf<RepositoryAttribute>())
                     .CurrentSessionContext("call");
-                    //для того чтобы в sql экранировались ключевые слова
-                    //.ExposeConfiguration(m => { SchemaMetadataUpdater.QuoteTableAndColumns(m); });
 
                 var conf = cfg.BuildConfiguration();
 
@@ -63,22 +63,34 @@ namespace FileMe.App_Start
                 return cfg.BuildSessionFactory();
             }).As<ISessionFactory>().InstancePerRequest();
 
+            containerBuilder
+                .Register(x => x.Resolve<ISessionFactory>().OpenSession())
+                .As<ISession>()
+                .InstancePerRequest();
+
             containerBuilder.RegisterControllers(Assembly.GetAssembly(typeof(HomeController)));
             containerBuilder.RegisterModule(new AutofacWebTypesModule());
 
             //регистрация репозиториев
-            var types = typeof(Repository<>).Assembly.GetTypes();
-            foreach(var type in types)
+            var types = typeof(RepositoryAttribute).Assembly.GetTypes();
+            foreach (var type in types)
             {
-                var repositoriesAttribute = type.GetCustomAttribute<RepositoriesAttribute>(true);
+                var repositoriesAttribute = type.GetCustomAttribute<RepositoryAttribute>(true);
                 if (repositoriesAttribute == null)
+                {
                     continue;
+                }
 
-                containerBuilder.RegisterType(type).InstancePerRequest().AsSelf();
+                containerBuilder
+                    .RegisterType(type)
+                    .AsSelf()
+                    .InstancePerRequest();
             }
 
             var container = containerBuilder.Build();
             #endregion
+
+            containerBuilder.RegisterType<UserRepository>();
 
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
 
