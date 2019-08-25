@@ -10,7 +10,7 @@ namespace FileMe.DAL.ClassesMap
             Id(u => u.Id).GeneratedBy.HiLo("100");
             Map(u => u.Login).Length(100);
             Map(u => u.Password).Length(100);
-            References(u => u.Group).Cascade.SaveUpdate();
+            //References(u => u.Group);
         }
     }
 }

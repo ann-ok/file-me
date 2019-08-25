@@ -9,6 +9,6 @@ namespace FileMe.DAL.Classes
         public virtual string Title { get; set; }
 
         //виртуальная связь, которая будет создаваться NHibernate
-        public virtual IList<Person> People { get; set; }
+        //public virtual IList<Person> People { get; set; }
     }
 }

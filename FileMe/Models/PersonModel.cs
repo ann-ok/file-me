@@ -1,24 +1,22 @@
 ﻿using FileMe.DAL.Classes;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Web;
 
 namespace FileMe.Models
 {
     public class PersonModel: EntityModel<Person>
     {
         [Required]
-        [DisplayName("Логин")]
+        [DisplayName("Название группы")]
         public string Login { get; set; }
 
         [Required]
-        [DataType(DataType.Password)]
-        [DisplayName("Пароль")]
         public string Password { get; set; }
 
-        [Compare("Password")]
-        [Required]
-        [DataType(DataType.Password)]
-        [DisplayName("Подтверждение пароля")]
-        public string ConfirmPassword { get; set; }
+        //public Group Group { get; set; }
     }
 }

@@ -90,8 +90,6 @@ namespace FileMe.App_Start
             var container = containerBuilder.Build();
             #endregion
 
-            containerBuilder.RegisterType<UserRepository>();
-
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
 
             app.UseAutofacMiddleware(container);

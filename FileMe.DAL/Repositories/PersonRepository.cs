@@ -3,8 +3,8 @@ using NHibernate;
 
 namespace FileMe.DAL.Repositories
 {
-    public class PersonRepository: Repository<Person>
+    public class PersonRepository : Repository<Person>
     {
-        public PersonRepository(ISession session) : base(session) { }
+        public PersonRepository(ISession session): base(session) { }
     }
 }

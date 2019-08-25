@@ -68,23 +68,20 @@
     <Compile Include="ClassesMap\FolderMap.cs" />
     <Compile Include="ClassesMap\GroupMap.cs" />
     <Compile Include="ClassesMap\PersonMap.cs" />
-    <Compile Include="ClassesMap\UserMap.cs" />
     <Compile Include="Classes\AccessRight.cs" />
     <Compile Include="Classes\Dct.cs" />
     <Compile Include="Classes\DctVersion.cs" />
     <Compile Include="Classes\Folder.cs" />
     <Compile Include="Classes\Group.cs" />
     <Compile Include="Classes\Person.cs" />
-    <Compile Include="Classes\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AccessRightRepository.cs" />
     <Compile Include="Repositories\DctRepository.cs" />
     <Compile Include="Repositories\DctVersionRepository.cs" />
     <Compile Include="Repositories\FolderRepository.cs" />
     <Compile Include="Repositories\GroupRepository.cs" />
-    <Compile Include="Repositories\PersonRepository.cs" />
     <Compile Include="Repositories\Repository.cs" />
-    <Compile Include="Repositories\UserRepository.cs" />
+    <Compile Include="Repositories\PersonRepository.cs" />
     <Compile Include="RepositoryAttribute.cs" />
   </ItemGroup>
   <ItemGroup>

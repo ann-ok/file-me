@@ -9,7 +9,7 @@ namespace FileMe.DAL.ClassesMap
         {
             Id(u => u.Id).GeneratedBy.HiLo("100");
             Map(u => u.Title).Length(100);
-            HasMany(u => u.People).AsList().Inverse().KeyColumn("Id");
+            //HasMany(u => u.People).AsList().Inverse().KeyColumn("Id");
         }
     }
 }
