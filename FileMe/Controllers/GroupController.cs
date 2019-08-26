@@ -31,7 +31,7 @@ namespace FileMe.Controllers
 
             var group = new Group
             {
-                Title = model.Title
+                Name = model.Name
             };
 
             groupRepository.Save(group);

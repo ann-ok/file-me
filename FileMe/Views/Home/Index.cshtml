@@ -18,9 +18,16 @@
     <div>
         @Model.Time.ToShortTimeString()
     </div>
+    <div>
+        <ul>
+            <li>
+                @Html.ActionLink("Создать пользователя", "Create", "Person")
+            </li>
+            <li>
+                @Html.ActionLink("Создать группу", "Create", "Group")
+            </li>
+        </ul>
+    </div>
 }
 
 
-@Html.ActionLink("Создать пользователя", "Create", "Person")
-
-@Html.ActionLink("Создать группу", "Create", "Group")

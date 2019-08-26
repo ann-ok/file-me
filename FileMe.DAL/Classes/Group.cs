@@ -4,11 +4,11 @@ namespace FileMe.DAL.Classes
 {
     public class Group
     {
-        public virtual long Id { get; set; }
+        public virtual long Id { get; protected set; }
 
-        public virtual string Title { get; set; }
+        public virtual string Name { get; set; }
 
         //виртуальная связь, которая будет создаваться NHibernate
-        //public virtual IList<Person> People { get; set; }
+        public virtual ISet<Person> People { get; protected set; }
     }
 }

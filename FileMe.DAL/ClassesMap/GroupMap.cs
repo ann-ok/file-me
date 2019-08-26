@@ -8,8 +8,9 @@ namespace FileMe.DAL.ClassesMap
         public GroupMap()
         {
             Id(u => u.Id).GeneratedBy.HiLo("100");
-            Map(u => u.Title).Length(100);
-            //HasMany(u => u.People).AsList().Inverse().KeyColumn("Id");
+            Map(u => u.Name).Length(100);
+            //За сохранение связи между группой и пользователем отвечает группа.
+            HasMany(u => u.People).KeyColumn("GroupId").Inverse().Cascade.AllDeleteOrphan();
         }
     }
 }

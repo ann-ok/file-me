@@ -8,6 +8,6 @@ namespace FileMe.Models
     {
         [Required]
         [DisplayName("Название группы")]
-        public string Title { get; set; }
+        public string Name { get; set; }
     }
 }

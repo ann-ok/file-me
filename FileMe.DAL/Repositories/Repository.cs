@@ -1,5 +1,7 @@
 ﻿using NHibernate;
+using NHibernate.Criterion;
 using System;
+using System.Collections.Generic;
 
 namespace FileMe.DAL.Repositories
 {
@@ -13,6 +15,8 @@ namespace FileMe.DAL.Repositories
         {
             this.session = session;
         }
+
+        public virtual IList<T> GetAll() => session.CreateCriteria(typeof(T)).List<T>();
 
         public virtual T Load(long id)
         {
