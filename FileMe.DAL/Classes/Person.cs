@@ -19,13 +19,18 @@ namespace FileMe.DAL.Classes
 
         public virtual Group Group { get; protected set; }
 
+        [FastSearch]
         public virtual string FIO { get; set; }
 
+        [FastSearch]
         public virtual string Login { get; set; }
 
+        [FastSearch]
         public virtual string Email { get; set; }
 
         public virtual string Password { get; set; }
+
+        public virtual DateTime CreationDate { get; set; }
 
         //public virtual Person CreationAuthor { get; set; }
 

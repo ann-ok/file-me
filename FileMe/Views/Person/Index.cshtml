@@ -1,0 +1,17 @@
+﻿@using FileMe.DAL.Filters
+@model FileMe.Models.PersonListModel
+@{
+    ViewBag.Title = "Список пользователей";
+}
+
+<h2>Список пользователей</h2>
+
+<p>
+    @Html.ActionLink("Добавить", "Create")
+</p>
+
+@Html.Partial("Filter", new PersonFilter())
+
+<div style="height:20px;"></div>
+
+@Html.Partial("Grid", Model.Items)

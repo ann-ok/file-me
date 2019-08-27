@@ -1,5 +1,6 @@
 ﻿using FileMe.DAL.Classes;
 using FileMe.Validation;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -35,6 +36,8 @@ namespace FileMe.Models
         [Required]
         [DisplayName("Группа")]
         public string GroupName { get; set; }
+
+        public DateTime CreationDate { get; set; }
 
         public List<SelectListItem> Groups { get; set; }
     }

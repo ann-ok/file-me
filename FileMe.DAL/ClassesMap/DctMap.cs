@@ -7,9 +7,8 @@ namespace FileMe.DAL.ClassesMap
     {
         public DctMap()
         {
-            Map(u => u.FilePath).Length(500);
-            Map(u => u.Type).Length(100);
-            References(u => u.Author).Cascade.SaveUpdate();
+            //Map(d => d.FilePath).Length(500);
+            Map(d => d.Type).Length(100);
         }
     }
 }

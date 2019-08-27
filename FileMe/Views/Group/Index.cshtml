@@ -1,0 +1,17 @@
+﻿@using FileMe.DAL.Filters
+@model FileMe.Models.GroupListModel
+@{
+    ViewBag.Title = "Список групп";
+}
+
+<h2>Список групп</h2>
+
+<p>
+    @Html.ActionLink("Добавить", "Create")
+</p>
+
+@Html.Partial("Filter", new GroupFilter())
+
+<div style="height:20px;"></div>
+
+@Html.Partial("Grid", Model.Items)

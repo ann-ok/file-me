@@ -1,4 +1,5 @@
 ﻿using FileMe.DAL.Classes;
+using FileMe.DAL.Filters;
 using FileMe.DAL.Repositories;
 using FileMe.Models;
 using System.Web.Mvc;
@@ -12,6 +13,16 @@ namespace FileMe.Controllers
         public GroupController(GroupRepository groupRepository)
         {
             this.groupRepository = groupRepository;
+        }
+
+        public ActionResult Index(GroupFilter filter)
+        {
+            var model = new GroupListModel
+            {
+                Items = groupRepository.Find(filter)
+            };
+
+            return View(model);
         }
 
         public ActionResult Create()

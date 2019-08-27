@@ -85,7 +85,6 @@ C:\Users\Anna\Desktop\file-me\FileMe\FileMe\bin\NHibernate.dll
 C:\Users\Anna\Desktop\file-me\FileMe\FileMe\bin\Owin.dll
 C:\Users\Anna\Desktop\file-me\FileMe\FileMe\bin\Remotion.Linq.dll
 C:\Users\Anna\Desktop\file-me\FileMe\FileMe\bin\Remotion.Linq.EagerFetching.dll
-C:\Users\Anna\Desktop\file-me\FileMe\FileMe\bin\Antlr3.Runtime.xml
 C:\Users\Anna\Desktop\file-me\FileMe\FileMe\bin\Autofac.pdb
 C:\Users\Anna\Desktop\file-me\FileMe\FileMe\bin\Autofac.xml
 C:\Users\Anna\Desktop\file-me\FileMe\FileMe\bin\Autofac.Integration.Mvc.xml
@@ -117,3 +116,18 @@ C:\Users\Anna\Desktop\file-me\FileMe\FileMe\bin\Google.Protobuf.xml
 C:\Users\Anna\Desktop\file-me\FileMe\FileMe\bin\MySql.Data.xml
 C:\Users\Anna\Desktop\file-me\FileMe\FileMe\bin\MySql.Data.Entity.EF6.xml
 C:\Users\Anna\Desktop\file-me\FileMe\FileMe\bin\Renci.SshNet.xml
+C:\Users\Anna\Desktop\file-me\FileMe\FileMe\bin\dotless.AspNet.dll
+C:\Users\Anna\Desktop\file-me\FileMe\FileMe\bin\dotless.Core.dll
+C:\Users\Anna\Desktop\file-me\FileMe\FileMe\bin\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\Anna\Desktop\file-me\FileMe\FileMe\bin\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\Anna\Desktop\file-me\FileMe\FileMe\bin\Microsoft.Extensions.DependencyInjection.xml
+C:\Users\Anna\Desktop\file-me\FileMe\FileMe\bin\Microsoft.Extensions.DependencyInjection.Abstractions.xml
+C:\Users\Anna\Desktop\file-me\FileMe\FileMe\bin\AdvancedStringBuilder.dll
+C:\Users\Anna\Desktop\file-me\FileMe\FileMe\bin\JavaScriptEngineSwitcher.Core.dll
+C:\Users\Anna\Desktop\file-me\FileMe\FileMe\bin\System.Web.Optimization.dll
+C:\Users\Anna\Desktop\file-me\FileMe\FileMe\bin\WebGrease.dll
+C:\Users\Anna\Desktop\file-me\FileMe\FileMe\bin\AdvancedStringBuilder.xml
+C:\Users\Anna\Desktop\file-me\FileMe\FileMe\bin\Antlr3.Runtime.pdb
+C:\Users\Anna\Desktop\file-me\FileMe\FileMe\bin\JavaScriptEngineSwitcher.Core.xml
+C:\Users\Anna\Desktop\file-me\FileMe\FileMe\bin\System.Web.Optimization.xml
+C:\Users\Anna\Desktop\file-me\FileMe\FileMe\bin\ru-ru\JavaScriptEngineSwitcher.Core.resources.dll

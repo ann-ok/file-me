@@ -12,8 +12,8 @@ C:\Users\Anna\Desktop\file-me\FileMe\FileMe.DAL\bin\Debug\Iesi.Collections.xml
 C:\Users\Anna\Desktop\file-me\FileMe\FileMe.DAL\bin\Debug\NHibernate.xml
 C:\Users\Anna\Desktop\file-me\FileMe\FileMe.DAL\bin\Debug\Remotion.Linq.xml
 C:\Users\Anna\Desktop\file-me\FileMe\FileMe.DAL\bin\Debug\Remotion.Linq.EagerFetching.xml
-C:\Users\Anna\Desktop\file-me\FileMe\FileMe.DAL\obj\Debug\FileMe.DAL.csprojAssemblyReference.cache
 C:\Users\Anna\Desktop\file-me\FileMe\FileMe.DAL\obj\Debug\FileMe.DAL.csproj.CoreCompileInputs.cache
 C:\Users\Anna\Desktop\file-me\FileMe\FileMe.DAL\obj\Debug\FileMe.DAL.csproj.CopyComplete
 C:\Users\Anna\Desktop\file-me\FileMe\FileMe.DAL\obj\Debug\FileMe.DAL.dll
 C:\Users\Anna\Desktop\file-me\FileMe\FileMe.DAL\obj\Debug\FileMe.DAL.pdb
+C:\Users\Anna\Desktop\file-me\FileMe\FileMe.DAL\obj\Debug\FileMe.DAL.csprojAssemblyReference.cache

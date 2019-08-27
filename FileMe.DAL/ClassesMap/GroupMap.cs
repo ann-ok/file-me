@@ -7,10 +7,10 @@ namespace FileMe.DAL.ClassesMap
     {
         public GroupMap()
         {
-            Id(u => u.Id).GeneratedBy.HiLo("100");
-            Map(u => u.Name).Length(100);
+            Id(g => g.Id).GeneratedBy.HiLo("100");
+            Map(g => g.Name).Length(100);
             //За сохранение связи между группой и пользователем отвечает группа.
-            HasMany(u => u.People).KeyColumn("GroupId").Inverse().Cascade.AllDeleteOrphan();
+            HasMany(g => g.People).KeyColumn("GroupId").Inverse().Cascade.AllDeleteOrphan();
         }
     }
 }

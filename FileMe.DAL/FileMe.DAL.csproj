@@ -74,7 +74,14 @@
     <Compile Include="Classes\Folder.cs" />
     <Compile Include="Classes\Group.cs" />
     <Compile Include="Classes\Person.cs" />
+    <Compile Include="FastSearchAttribute.cs" />
+    <Compile Include="FilterAttribute.cs" />
+    <Compile Include="Filters\AccessRightFilter.cs" />
     <Compile Include="Filters\BaseFilter.cs" />
+    <Compile Include="Filters\DctFilter.cs" />
+    <Compile Include="Filters\DctVersionFilter.cs" />
+    <Compile Include="Filters\FolderFilter.cs" />
+    <Compile Include="Filters\GroupFilter.cs" />
     <Compile Include="Filters\PersonFilter.cs" />
     <Compile Include="Filters\Range.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -83,6 +90,7 @@
     <Compile Include="Repositories\DctVersionRepository.cs" />
     <Compile Include="Repositories\FolderRepository.cs" />
     <Compile Include="Repositories\GroupRepository.cs" />
+    <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Repositories\PersonRepository.cs" />
     <Compile Include="RepositoryAttribute.cs" />

@@ -7,9 +7,9 @@ namespace FileMe.DAL.ClassesMap
     {
         public AccessRightMap()
         {
-            Id(u => u.Id).GeneratedBy.HiLo("100");
+            Id(a => a.Id).GeneratedBy.HiLo("100");
             //HasOne(u => u.Folder).Constrained().Cascade.SaveUpdate();
-            Map(u => u.AccessLevel);
+            Map(a => a.AccessLevel);
             //HasOne(u => u.Group).Constrained().Cascade.SaveUpdate();
         }
     }

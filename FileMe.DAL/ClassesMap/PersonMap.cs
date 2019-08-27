@@ -7,12 +7,13 @@ namespace FileMe.DAL.ClassesMap
     {
         public PersonMap()
         {
-            Id(u => u.Id).GeneratedBy.HiLo("100");
+            Id(p => p.Id).GeneratedBy.HiLo("100");
             References(u => u.Group, "GroupId");
-            Map(u => u.FIO).Length(100);
-            Map(u => u.Login).Length(100);
-            Map(u => u.Email).Length(100);
-            Map(u => u.Password).Length(100);
+            Map(p => p.FIO).Length(100);
+            Map(p => p.Login).Length(30);
+            Map(p => p.Email);
+            Map(p => p.Password).Length(100);
+            Map(p => p.CreationDate);
         }
     }
 }

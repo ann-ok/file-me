@@ -1,0 +1,39 @@
+﻿@using FileMe.DAL.Classes
+@model IEnumerable<FileMe.DAL.Classes.Folder>
+
+@{
+    var parent = ViewData["Parent"] as Folder;
+    var isRootFolder = Convert.ToBoolean(ViewData["IsRootFolder"] ?? true);
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreationDate)
+        </th>
+    </tr>
+    @if (!isRootFolder)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink("\\...", "Index", new { parent = parent != null ? parent.Id : (long?)null }, null)
+            </td>
+        </tr>
+
+    }
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink(item.Name, "Index", new { parent = item.Id }, null)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreationDate)
+            </td>
+        </tr>
+    }
+
+</table>

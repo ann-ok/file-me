@@ -7,8 +7,8 @@ namespace FileMe.DAL.ClassesMap
     {
         public DctVersionMap()
         {
-            Id(u => u.Id).GeneratedBy.HiLo("100");
-            References(u => u.Document).Cascade.SaveUpdate();
+            Id(d => d.Id).GeneratedBy.HiLo("100");
+            References(d => d.Document).Cascade.SaveUpdate();
         }
     }
 }

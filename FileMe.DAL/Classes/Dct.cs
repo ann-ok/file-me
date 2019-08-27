@@ -2,11 +2,9 @@
 {
     public class Dct : Folder
     {
-        public virtual string FilePath { get; set; }
+        //public virtual string FilePath { get; set; }
 
         //public virtual string Type => FilePath.Substring(FilePath.LastIndexOf('.') + 1);
         public virtual string Type { get; set; }
-
-        public virtual Person Author { get; set; }
     }
 }

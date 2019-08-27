@@ -1,6 +1,8 @@
 ﻿using FileMe.DAL.Classes;
+using FileMe.DAL.Filters;
 using FileMe.DAL.Repositories;
 using FileMe.Models;
+using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
 
@@ -17,11 +19,21 @@ namespace FileMe.Controllers
             this.groupRepository = groupRepository;
         }
 
+        public ActionResult Index(PersonFilter filter)
+        {
+            var model = new PersonListModel
+            {
+                Items = personRepository.Find(filter)
+            };
+
+            return View(model);
+        }
+
         public ActionResult Create()
         {
             var model = new PersonModel
             {
-                Groups = new List<SelectListItem>()
+                Groups = new List<SelectListItem>(),
             };
 
             foreach (var group in groupRepository.GetAll())
@@ -47,11 +59,12 @@ namespace FileMe.Controllers
                 Login = model.Login,
                 Email = model.Email,
                 Password = model.Password,
+                CreationDate = DateTime.Now,
             };
 
             personRepository.Save(person);
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index");
         }
     }
 }

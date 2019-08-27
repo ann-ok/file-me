@@ -7,9 +7,10 @@ namespace FileMe.DAL.ClassesMap
     {
         public FolderMap()
         {
-            Id(u => u.Id).GeneratedBy.HiLo("100");
-            Map(u => u.Title).Length(100);
-            Map(u => u.CreationDate);
+            Id(f => f.Id).GeneratedBy.HiLo("100");
+            Map(f => f.Name).Length(100);
+            Map(f => f.CreationDate);
+            References(f => f.Parent).Cascade.SaveUpdate();
             //References(u => u.ParentFolder).Cascade.SaveUpdate();
             //HasMany(u => u.Versions).AsList().Inverse();
         }
