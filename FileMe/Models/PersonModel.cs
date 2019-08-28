@@ -15,15 +15,18 @@ namespace FileMe.Models
         public string FIO { get; set; }
 
         [Required]
-        [Login]
+        [Login(ErrorMessage = "Пользователь с таким логином уже существует")]
         [DisplayName("Логин")]
         public string Login { get; set; }
 
         [Required]
+        [Email(ErrorMessage = "Пользователь с таким адресом уже существует")]
         [EmailAddress]
         public string Email { get; set; }
 
         [Required]
+        [Password(8, ErrorMessage = "Пароль должен иметь больше 8 символов")]
+        [DataType(DataType.Password)]
         [DisplayName("Пароль")]
         public string Password { get; set; }
 
@@ -38,7 +41,5 @@ namespace FileMe.Models
         public string GroupName { get; set; }
 
         public DateTime CreationDate { get; set; }
-
-        public List<SelectListItem> Groups { get; set; }
     }
 }

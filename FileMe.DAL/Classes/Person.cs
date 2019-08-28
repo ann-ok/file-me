@@ -17,7 +17,7 @@ namespace FileMe.DAL.Classes
 
         public virtual long Id { get; protected set; }
 
-        public virtual Group Group { get; protected set; }
+        public virtual Group Group { get; set; }
 
         [FastSearch]
         public virtual string FIO { get; set; }

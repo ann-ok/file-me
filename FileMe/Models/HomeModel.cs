@@ -7,7 +7,7 @@ namespace FileMe.Models
     {
         public static string ApplicationName = "FileMe";
 
-        [DisplayName("Название страницы")]
+        [DisplayName("Изменить название страницы")]
         public string Title { get; set; }
 
         public DateTime Time { get; set; }

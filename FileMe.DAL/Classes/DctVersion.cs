@@ -2,7 +2,7 @@
 {
     public class DctVersion
     {
-        public virtual int Id { get; set; }
+        public virtual long Id { get; set; }
 
         public virtual Folder Document { get; set; }
     }

@@ -19,9 +19,10 @@ namespace FileMe.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(HomeModel model)
+        public ActionResult Index(HomeModel model, string inputTitle)
         {
             model.Time = DateTime.Now;
+            model.Title = inputTitle;
 
             return View(model);
         }

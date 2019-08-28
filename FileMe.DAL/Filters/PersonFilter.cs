@@ -6,7 +6,7 @@ namespace FileMe.DAL.Filters
 {
     public class PersonFilter: BaseFilter
     {
-        public Group Group { get; set; }
+        public IList<Group> Group { get; set; }
 
         public string FIO { get; set; }
 

@@ -19,7 +19,7 @@ namespace FileMe.DAL.Repositories
             this.session = session;
         }
 
-        public virtual IList<T> GetAll() => session.CreateCriteria(typeof(T)).List<T>();
+        public virtual IList<T> GetAll() => session.CreateCriteria<T>().List<T>();
 
         public virtual T Load(long id)
         {
@@ -37,9 +37,76 @@ namespace FileMe.DAL.Repositories
                 }
                 catch(Exception e)
                 {
-                    Console.WriteLine("/n" + e.Message);
                     tran.Rollback();
+                    throw new Exception(e.Message);
                 }
+            }
+        }
+
+        public virtual void Update(T entity)
+        {
+            using (var tran = session.BeginTransaction())
+            {
+                try
+                {
+                    session.Update(entity);
+                    tran.Commit();
+                }
+                catch (Exception e)
+                {
+                    tran.Rollback();
+                    throw new Exception(e.Message);
+                }
+            }
+        }
+
+        public virtual void Delete(T entity)
+        {
+            using (var tran = session.BeginTransaction())
+            {
+                try
+                {
+                    session.Delete(entity);
+                    tran.Commit();
+                }
+                catch (Exception e)
+                {
+                    tran.Rollback();
+                    throw new Exception(e.Message);
+                }
+            }
+        }
+
+        public bool Exists(string field, string fieldName)
+        {
+            var crit = session.CreateCriteria<T>()
+                .Add(Restrictions.Eq(fieldName, field))
+                .SetProjection(Projections.Count("Id"));
+
+            var count = Convert.ToInt64(crit.UniqueResult());
+
+            return count > 0;
+        }
+
+        public T Get(string field, string fieldName)
+        {
+            var crit = session.CreateCriteria<T>().Add(Restrictions.Eq(fieldName, field));
+            var list = crit.List<T>();
+            return list[0];
+
+        }
+
+        public T Get(long? id)
+        {
+            if (id != null)
+            {
+                var crit = session.CreateCriteria<T>().Add(Restrictions.Eq("Id", id));
+                var list = crit.List<T>();
+                return list[0];
+            }
+            else
+            {
+                return null;
             }
         }
 
@@ -78,7 +145,7 @@ namespace FileMe.DAL.Repositories
                     {
                         case FiledType.Int:
                             var proj = Projections
-                                .Cast(NHibernateUtil.Int64, Projections.Property(property.Name));
+                                .Cast(NHibernateUtil.Int32, Projections.Property(property.Name));
                             like = Restrictions.InsensitiveLike(proj, filter.SearchString, MatchMode.Anywhere);
                             break;
                         default:

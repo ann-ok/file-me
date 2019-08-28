@@ -1,0 +1,58 @@
+﻿body {
+
+    .settings {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &__title {
+            font-size: 30px;
+            text-align: center;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        &__for-input {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        &__block {
+        }
+    }
+
+    .header {
+
+        &__logo-block {
+            background-image: url(../Images/logo.png);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+            width: 100%;
+            height: auto;
+            font-size: 0;
+            display: block;
+        }
+
+        .navbar {
+            
+            background-color: transparent !important;
+            padding: 0;
+
+            .navbar-nav{
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                .nav-item {
+                    .nav-link {
+                        padding: 0;
+                    }
+                }
+            }
+        }
+    }
+}
