@@ -1,9 +1,10 @@
-﻿@model IEnumerable<FileMe.DAL.Classes.Group>
+﻿@using FileMe.Extensions
+@model IEnumerable<FileMe.DAL.Classes.Group>
 
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.SortLink("Название", "Name", "Index", "Group", null)
         </th>
     </tr>
     @foreach (var item in Model)
@@ -14,11 +15,16 @@
         </td>
         
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            @Html.ActionLink("Редактировать", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Удалить", "Delete", new { id = item.Id })
         </td>
     </tr>
     }
 </table>
+
+<div>
+    @Html.SortLink("Вперед", "", "Index", "Group", null)
+    @Html.SortLink("Назад", "", "Index", "Group", null)
+</div>
 
 

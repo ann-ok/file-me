@@ -1,0 +1,49 @@
+﻿@model FileMe.Models.GroupModel
+
+@{
+    ViewBag.Title = "Удаление группы";
+}
+
+<div>
+    <h4>Удаление</h4>
+    <p>Вы уверены, что хотите удалить эту группу?</p>
+
+    <p>
+        <div class="font-weight-bold">
+            @Html.DisplayNameFor(model => model.Name)
+        </div>
+        <div class="font-italic">
+            @Html.DisplayFor(model => model.Name)
+        </div>
+    </p>
+    
+    <div>
+        <p>Внимание! Следующие пользователи будут удалены:</p>
+        <table class="table">
+            <tr>
+                <th>Логин</th>
+                <th>ФИО</th>
+                <th>Email</th>
+                <th>Дата создания</th>
+            </tr>
+            @foreach (var person in Model.People)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => person.Login)</td>
+                    <td>@Html.DisplayFor(modelItem => person.FIO)</td>
+                    <td>@Html.DisplayFor(modelItem => person.Email)</td>
+                    <td>@Html.DisplayFor(modelItem => person.CreationDate)</td>
+                </tr>
+            }
+        </table>
+    </div>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Удалить группу" class="btn btn-default" />
+        </div>
+    }
+</div>

@@ -3,22 +3,19 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Login)
+            Лоигн
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Group)
+            Группа
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FIO)
+            ФИО
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Login)
+            Email
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreationDate)
+            Дата создания
         </th>
         <th></th>
     </tr>
@@ -36,20 +33,16 @@
             @Html.DisplayFor(modelItem => item.FIO)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Login)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.Email)
         </td>
         <td>
             @item.CreationDate.ToShortDateString()
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-            @Html.ActionLink("Info", "Info", new { id = item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            @Html.ActionLink("Редактировать", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Информация", "Info", new { id = item.Id }) |
+            @Html.ActionLink("Удалить", "Delete", new { id = item.Id })
         </td>
     </tr>
     }
-
 </table>

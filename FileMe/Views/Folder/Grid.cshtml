@@ -1,18 +1,20 @@
 ﻿@using FileMe.DAL.Classes
+@using FileMe.Extensions
 @model IEnumerable<FileMe.DAL.Classes.Folder>
 
 @{
     var parent = ViewData["Parent"] as Folder;
     var isRootFolder = Convert.ToBoolean(ViewData["IsRootFolder"] ?? true);
+    var routeValueDict = new RouteValueDictionary() { { "ParentId", ViewData["Id"] } };
 }
 
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.SortLink("Название", "Name", "Index", "Folder", routeValueDict)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CreationDate)
+            @Html.SortLink("Дата создания", "CreationDate", "Index", "Folder", routeValueDict)
         </th>
     </tr>
     @if (!isRootFolder)

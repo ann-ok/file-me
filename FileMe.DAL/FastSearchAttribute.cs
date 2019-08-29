@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FileMe.DAL
 {
@@ -14,6 +10,7 @@ namespace FileMe.DAL
     public enum FiledType
     {
         String,
-        Int
+        Int,
+        ComplexEntity
     }
 }

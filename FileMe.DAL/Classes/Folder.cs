@@ -6,6 +6,7 @@ namespace FileMe.DAL.Classes
     {
         public virtual long Id { get; set; }
 
+        [FastSearch]
         public virtual string Name { get; set; }
 
         public virtual Folder Parent { get; set; }

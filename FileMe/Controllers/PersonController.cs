@@ -81,7 +81,7 @@ namespace FileMe.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var person = personRepository.Get(id);
+            var person = personRepository.Load(id);
 
             if (person == null)
             {
@@ -107,7 +107,7 @@ namespace FileMe.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var person = personRepository.Get(id);
+            var person = personRepository.Load(id);
 
             if (person == null)
             {
@@ -148,7 +148,7 @@ namespace FileMe.Controllers
                 return View(model);
             }
 
-            var person = personRepository.Get(id);
+            var person = personRepository.Load(id);
 
             Group group = groupRepository.Get(model.GroupName, "Name");
 
@@ -177,7 +177,7 @@ namespace FileMe.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var person = personRepository.Get(id);
+            var person = personRepository.Load(id);
 
             if (person == null)
             {
@@ -199,7 +199,7 @@ namespace FileMe.Controllers
         [HttpPost]
         public ActionResult Delete(PersonModel model, long? id)
         {
-            var person = personRepository.Get(id);
+            var person = personRepository.Load(id);
 
             try
             {

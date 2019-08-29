@@ -1,0 +1,16 @@
+﻿@model FileMe.Models.SortLinkModel
+
+<a href="@Url.Action(Model.Action, Model.Controller, Model.RouteValues)">
+    @Model.LinkText
+    @if (Model.SortDirection.HasValue)
+    {
+        if (Model.SortDirection.Value == FileMe.DAL.Filters.SortDirection.Asc)
+        {
+            <img style="width: 25px; height: 25px;" src="~/Content/images/up.png" />
+        }
+        else
+        {
+            <img style="width: 25px; height: 25px;" src="~/Content/images/down.png" />
+        }
+    }
+</a>

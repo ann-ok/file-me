@@ -9,7 +9,7 @@ namespace FileMe.DAL.Classes
         public Person(Group group)
         {
             if (group == null)
-                throw new ArgumentNullException("group");
+                throw new ArgumentNullException("У пользователя не задана группа");
 
             group.People.Add(this);
             Group = group;
@@ -17,6 +17,7 @@ namespace FileMe.DAL.Classes
 
         public virtual long Id { get; protected set; }
 
+        [FastSearch(FiledType = FiledType.ComplexEntity)]
         public virtual Group Group { get; set; }
 
         [FastSearch]

@@ -1,4 +1,5 @@
 ﻿using FileMe.DAL.Classes;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
@@ -9,5 +10,7 @@ namespace FileMe.Models
         [Required]
         [DisplayName("Название группы")]
         public string Name { get; set; }
+
+        public ISet<Person> People { get; set; }
     }
 }

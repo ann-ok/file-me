@@ -1,4 +1,5 @@
-﻿using FileMe.DAL.Filters;
+﻿using FileMe.DAL.Classes;
+using FileMe.DAL.Filters;
 using NHibernate;
 using NHibernate.Criterion;
 using System;
@@ -21,7 +22,7 @@ namespace FileMe.DAL.Repositories
 
         public virtual IList<T> GetAll() => session.CreateCriteria<T>().List<T>();
 
-        public virtual T Load(long id)
+        public virtual T Load(long? id)
         {
             return session.Get<T>(id);
         }
@@ -96,28 +97,41 @@ namespace FileMe.DAL.Repositories
 
         }
 
-        public T Get(long? id)
+        public virtual IList<T> Find(F filter, FetchOptoins fetchOptoins = null)
         {
-            if (id != null)
-            {
-                var crit = session.CreateCriteria<T>().Add(Restrictions.Eq("Id", id));
-                var list = crit.List<T>();
-                return list[0];
-            }
-            else
-            {
-                return null;
-            }
-        }
+            var crit = session.CreateCriteria<T>(alias: "crit");
 
-        public virtual IList<T> Find(F filter)
-        {
-            var crit = session.CreateCriteria<T>();
             if (filter != null)
             {
                 SetupFilter(crit, filter);
             }
+
+            if (fetchOptoins != null)
+            {
+                SetupFetchOptions(crit, fetchOptoins);
+            }
+
             return crit.List<T>();
+        }
+
+        protected virtual void SetupFetchOptions(ICriteria crit, FetchOptoins fetchOptoins)
+        {
+            if (!string.IsNullOrEmpty(fetchOptoins.SortExpression))
+            {
+                crit.AddOrder(fetchOptoins.SortDirection == SortDirection.Asc ?
+                    Order.Asc(fetchOptoins.SortExpression) :
+                    Order.Desc(fetchOptoins.SortExpression));
+            }
+
+            if (fetchOptoins.First != null)
+            {
+                crit.SetFirstResult(fetchOptoins.First.Value);
+            }
+
+            if (fetchOptoins.Count != null)
+            {
+                crit.SetMaxResults(fetchOptoins.Count.Value);
+            }
         }
 
         protected virtual void SetupFilter(ICriteria crit, F filter)
@@ -133,6 +147,7 @@ namespace FileMe.DAL.Repositories
 
                 foreach (var property in properties)
                 {
+                    //определяем участвует ли свойство в поиске
                     var fs = property.GetCustomAttribute<FastSearchAttribute>();
                     if (fs == null)
                     {
@@ -147,13 +162,17 @@ namespace FileMe.DAL.Repositories
                             var proj = Projections
                                 .Cast(NHibernateUtil.Int32, Projections.Property(property.Name));
                             like = Restrictions.InsensitiveLike(proj, filter.SearchString, MatchMode.Anywhere);
+                            clause = (clause == null) ? like : Restrictions.Or(clause, like);
+                            break;
+                        case FiledType.ComplexEntity:
+                            var c = crit.CreateCriteria(property.Name);
+                            c.Add(Restrictions.InsensitiveLike("Name", filter.SearchString, MatchMode.Anywhere));
                             break;
                         default:
                             like = Restrictions.InsensitiveLike(property.Name, filter.SearchString, MatchMode.Anywhere);
+                            clause = (clause == null) ? like : Restrictions.Or(clause, like);
                             break;
                     }
-
-                    clause = (clause == null) ? like : Restrictions.Or(clause, like);
                 }
 
                 if (clause != null)
