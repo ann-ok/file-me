@@ -1,0 +1,4 @@
+﻿@model FileMe.Binders.BinaryFileWrapper
+
+@Html.Partial("DisplayTemplates/BinaryFileWrapper", Model)
+<input type="file" name="@ViewData.TemplateInfo.GetFullHtmlFieldName("PostedFile")" />

@@ -7,7 +7,7 @@ namespace FileMe.DAL.ClassesMap
     {
         public DctMap()
         {
-            Map(d => d.File).Length(int.MaxValue);
+            Map(d => d.DctFile).Length(100);
         }
     }
 }

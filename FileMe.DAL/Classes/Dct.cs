@@ -2,9 +2,6 @@
 {
     public class Dct : Folder
     {
-        //public virtual string FilePath { get; set; }
-
-        //public virtual string Type => FilePath.Substring(FilePath.LastIndexOf('.') + 1);
-        public virtual byte[] File { get; set; }
+        public virtual string DctFile { get; set; }
     }
 }

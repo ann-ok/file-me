@@ -19,9 +19,9 @@ namespace FileMe.DAL.Repositories
             {
                 crit.Add(Restrictions.In("CreationAuthor", filter.Group.ToArray()));
             }
-            if (!string.IsNullOrEmpty(filter.Login))
+            if (!string.IsNullOrEmpty(filter.UserName))
             {
-                crit.Add(Restrictions.Eq("Login", filter.Login));
+                crit.Add(Restrictions.Eq("UserName", filter.UserName));
             }
             if (!string.IsNullOrEmpty(filter.FIO))
             {

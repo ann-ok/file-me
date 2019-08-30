@@ -40,6 +40,9 @@
     <Reference Include="Iesi.Collections, Version=4.0.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <HintPath>..\packages\Iesi.Collections.4.0.4\lib\net461\Iesi.Collections.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.2\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
     <Reference Include="NHibernate, Version=5.1.0.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <HintPath>..\packages\NHibernate.5.1.1\lib\net461\NHibernate.dll</HintPath>
     </Reference>
@@ -63,12 +66,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClassesMap\AccessRightMap.cs" />
+    <Compile Include="ClassesMap\BinaryFileContentMap.cs" />
+    <Compile Include="ClassesMap\BinaryFileMap.cs" />
     <Compile Include="ClassesMap\DctMap.cs" />
     <Compile Include="ClassesMap\DctVersionMap.cs" />
     <Compile Include="ClassesMap\FolderMap.cs" />
     <Compile Include="ClassesMap\GroupMap.cs" />
     <Compile Include="ClassesMap\PersonMap.cs" />
     <Compile Include="Classes\AccessRight.cs" />
+    <Compile Include="Classes\BinaryFile.cs" />
+    <Compile Include="Classes\BinaryFileContent.cs" />
     <Compile Include="Classes\Dct.cs" />
     <Compile Include="Classes\DctVersion.cs" />
     <Compile Include="Classes\Folder.cs" />
@@ -78,8 +85,9 @@
     <Compile Include="FilterAttribute.cs" />
     <Compile Include="Filters\AccessRightFilter.cs" />
     <Compile Include="Filters\BaseFilter.cs" />
+    <Compile Include="Filters\BinaryFileContentFilter.cs" />
+    <Compile Include="Filters\BinatyFileFilter.cs" />
     <Compile Include="Filters\DctFilter.cs" />
-    <Compile Include="Filters\DctVersionFilter.cs" />
     <Compile Include="Filters\FetchOptoins.cs" />
     <Compile Include="Filters\FolderFilter.cs" />
     <Compile Include="Filters\GroupFilter.cs" />
@@ -87,8 +95,9 @@
     <Compile Include="Filters\Range.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AccessRightRepository.cs" />
+    <Compile Include="Repositories\BinaryFileContentRepository.cs" />
+    <Compile Include="Repositories\BinaryFileRepository.cs" />
     <Compile Include="Repositories\DctRepository.cs" />
-    <Compile Include="Repositories\DctVersionRepository.cs" />
     <Compile Include="Repositories\FolderRepository.cs" />
     <Compile Include="Repositories\GroupRepository.cs" />
     <Compile Include="Repositories\IRepository.cs" />

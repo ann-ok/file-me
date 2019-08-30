@@ -17,3 +17,5 @@ C:\Users\Anna\Desktop\file-me\FileMe\FileMe.DAL\obj\Debug\FileMe.DAL.csproj.Copy
 C:\Users\Anna\Desktop\file-me\FileMe\FileMe.DAL\obj\Debug\FileMe.DAL.dll
 C:\Users\Anna\Desktop\file-me\FileMe\FileMe.DAL\obj\Debug\FileMe.DAL.pdb
 C:\Users\Anna\Desktop\file-me\FileMe\FileMe.DAL\obj\Debug\FileMe.DAL.csprojAssemblyReference.cache
+C:\Users\Anna\Desktop\file-me\FileMe\FileMe.DAL\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Anna\Desktop\file-me\FileMe\FileMe.DAL\bin\Debug\Microsoft.AspNet.Identity.Core.xml

@@ -1,8 +1,9 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 
 namespace FileMe.DAL.Classes
 {
-    public class Person
+    public class Person: IUser<long>
     {
         public Person() { }
 
@@ -24,7 +25,7 @@ namespace FileMe.DAL.Classes
         public virtual string FIO { get; set; }
 
         [FastSearch]
-        public virtual string Login { get; set; }
+        public virtual string UserName { get; set; }
 
         [FastSearch]
         public virtual string Email { get; set; }
@@ -32,6 +33,8 @@ namespace FileMe.DAL.Classes
         public virtual string Password { get; set; }
 
         public virtual DateTime CreationDate { get; set; }
+
+        public virtual BinaryFile AvatarFile { get; set; }
 
         //public virtual Person CreationAuthor { get; set; }
 

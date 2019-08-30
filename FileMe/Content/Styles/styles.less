@@ -89,19 +89,35 @@
                 padding: 0;
                 width: 100%;
 
-                .navbar-nav {
-                    width: 100%;
+                .collapse {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+
+                    .navbar-nav {
+                        display: flex;
+                        align-items: center;
+                        justify-content: flex-start;
+
+                        .nav-item {
+                            margin-right: 30px;
+
+                            .nav-link {
+                                font-size: 20px;
+                                padding: 0;
+                            }
+                        }
+                    }
+                }
+
+                .account-block {
                     display: flex;
                     align-items: center;
                     justify-content: flex-start;
 
-                    .nav-item {
-                        margin-right: 30px;
-
-                        .nav-link {
-                            font-size: 20px;
-                            padding: 0;
-                        }
+                    .account {
+                        font-size: 17px;
+                        color: blueviolet;
                     }
                 }
             }

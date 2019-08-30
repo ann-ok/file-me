@@ -24,7 +24,7 @@
     {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Login)
+            @Html.DisplayFor(modelItem => item.UserName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Group.Name)
@@ -37,6 +37,12 @@
         </td>
         <td>
             @item.CreationDate.ToShortDateString()
+        </td>
+        <td>
+            @if (item.AvatarFile != null)
+            {
+                <img src="@Url.Action("Download", "BinaryFile", new { id = item.AvatarFile.Id })" style="width:24px;"   />                    
+            }
         </td>
         <td>
             @Html.ActionLink("Редактировать", "Edit", new { id = item.Id }) |

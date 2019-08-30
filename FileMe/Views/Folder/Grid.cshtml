@@ -5,16 +5,15 @@
 @{
     var parent = ViewData["Parent"] as Folder;
     var isRootFolder = Convert.ToBoolean(ViewData["IsRootFolder"] ?? true);
-    var routeValueDict = new RouteValueDictionary() { { "ParentId", ViewData["Id"] } };
 }
 
 <table class="table">
     <tr>
         <th>
-            @Html.SortLink("Название", "Name", "Index", "Folder", routeValueDict)
+            @Html.SortLink("Название", "Name", "Index", "Folder", null)
         </th>
         <th>
-            @Html.SortLink("Дата создания", "CreationDate", "Index", "Folder", routeValueDict)
+            @Html.SortLink("Дата создания", "CreationDate", "Index", "Folder", null)
         </th>
     </tr>
     @if (!isRootFolder)
@@ -32,9 +31,12 @@
             <td>
                 @Html.ActionLink(item.Name, "Index", new { parent = item.Id }, null)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreationDate)
-            </td>
+            <div>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreationDate)
+                </td>
+            </div>
         </tr>
     }
 

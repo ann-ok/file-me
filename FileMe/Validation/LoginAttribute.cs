@@ -13,7 +13,7 @@ namespace FileMe.Validation
                 var login = value.ToString();
                 var personRepository = DependencyResolver.Current.GetService<PersonRepository>();
 
-                return !personRepository.Exists(login, "Login");
+                return !personRepository.Exists(login, "UserName");
             }
 
             return false;

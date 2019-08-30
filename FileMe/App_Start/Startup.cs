@@ -1,12 +1,17 @@
 ﻿using Autofac;
 using Autofac.Integration.Mvc;
 using FileMe.App_Start;
+using FileMe.Authorization;
+using FileMe.Binders;
 using FileMe.Controllers;
 using FileMe.DAL;
-using FileMe.DAL.Repositories;
+using FileMe.Files;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
+using Microsoft.Owin.Security.Cookies;
 using NHibernate;
 using NHibernate.Dialect;
 using NHibernate.Tool.hbm2ddl;
@@ -27,6 +32,9 @@ namespace FileMe.App_Start
             //копируем из Global.asax
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+
+            //подключение биндера
+            ModelBinders.Binders.Add(typeof(BinaryFileWrapper), new BinaryFileModelBinder());
 
             //строка подключения
             var connectionString = ConfigurationManager.ConnectionStrings["MSSQL"];
@@ -68,12 +76,13 @@ namespace FileMe.App_Start
                 .As<ISession>()
                 .InstancePerRequest();
 
-            containerBuilder.RegisterControllers(Assembly.GetAssembly(typeof(HomeController)));
+            containerBuilder.RegisterControllers(Assembly.GetAssembly(typeof(HomeController)))
+                .PropertiesAutowired(); //чтобы работала инъекция через свойство
             containerBuilder.RegisterModule(new AutofacWebTypesModule());
 
             //регистрация репозиториев
-            var types = typeof(RepositoryAttribute).Assembly.GetTypes();
-            foreach (var type in types)
+            var typesR = typeof(RepositoryAttribute).Assembly.GetTypes();
+            foreach (var type in typesR)
             {
                 var repositoriesAttribute = type.GetCustomAttribute<RepositoryAttribute>(true);
                 if (repositoriesAttribute == null)
@@ -87,12 +96,45 @@ namespace FileMe.App_Start
                     .InstancePerRequest();
             }
 
+            //регистрация провайдеров
+            var typesFP = typeof(FileProviderAttribute).Assembly.GetTypes();
+            foreach (var type in typesFP)
+            {
+                var fileProviderAttribute = type.GetCustomAttribute<FileProviderAttribute>(true);
+                if (fileProviderAttribute == null)
+                {
+                    continue;
+                }
+
+                containerBuilder
+                    .RegisterType(type)
+                    .As<IFileProvider>();
+            }
+
             var container = containerBuilder.Build();
             #endregion
 
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
 
             app.UseAutofacMiddleware(container);
+
+            #region Настройки для авторизации
+            //на каждый owin контекст нужно создать новый UserManager
+            app.CreatePerOwinContext(() =>
+                new UserManager(new IdentityStore(DependencyResolver.Current.GetService<ISession>())));
+
+            //так же на каждый контекст определяем SignInManager
+            app.CreatePerOwinContext<SignInManager>((opt, context) =>
+                new SignInManager(context.GetUserManager<UserManager>(), context.Authentication));
+
+            //настройки аутенфикации
+            app.UseCookieAuthentication(new CookieAuthenticationOptions
+            {
+                AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
+                LoginPath = new PathString("/Account/Login"),
+                Provider = new CookieAuthenticationProvider()
+            });
+            #endregion
         }
     }
 }

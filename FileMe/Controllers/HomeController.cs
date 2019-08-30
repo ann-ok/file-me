@@ -4,6 +4,7 @@ using System.Web.Mvc;
 
 namespace FileMe.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         // GET: Home

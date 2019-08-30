@@ -135,3 +135,13 @@ C:\Users\Anna\Desktop\file-me\FileMe\FileMe\bin\roslyn\System.Net.Sockets.dll
 C:\Users\Anna\Desktop\file-me\FileMe\FileMe\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
 C:\Users\Anna\Desktop\file-me\FileMe\FileMe\bin\roslyn\System.Threading.Tasks.Extensions.dll
 C:\Users\Anna\Desktop\file-me\FileMe\FileMe\bin\Google.Protobuf.pdb
+C:\Users\Anna\Desktop\file-me\FileMe\FileMe\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Anna\Desktop\file-me\FileMe\FileMe\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\Anna\Desktop\file-me\FileMe\FileMe\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\Anna\Desktop\file-me\FileMe\FileMe\bin\Microsoft.Owin.Security.dll
+C:\Users\Anna\Desktop\file-me\FileMe\FileMe\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\Anna\Desktop\file-me\FileMe\FileMe\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Anna\Desktop\file-me\FileMe\FileMe\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\Anna\Desktop\file-me\FileMe\FileMe\bin\Microsoft.Owin.Security.xml
+C:\Users\Anna\Desktop\file-me\FileMe\FileMe\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\Anna\Desktop\file-me\FileMe\FileMe\bin\Microsoft.Owin.Security.OAuth.xml

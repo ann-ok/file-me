@@ -89,17 +89,17 @@ namespace FileMe.DAL.Repositories
             return count > 0;
         }
 
-        public T Get(string field, string fieldName)
+        public T Get(string fieldName, object field)
         {
-            var crit = session.CreateCriteria<T>().Add(Restrictions.Eq(fieldName, field));
-            var list = crit.List<T>();
-            return list[0];
+            var crit = session.CreateCriteria<T>()
+                .Add(Restrictions.Eq(fieldName, field));
+            return crit.UniqueResult<T>();
 
         }
 
         public virtual IList<T> Find(F filter, FetchOptoins fetchOptoins = null)
         {
-            var crit = session.CreateCriteria<T>(alias: "crit");
+            var crit = session.CreateCriteria<T>();
 
             if (filter != null)
             {

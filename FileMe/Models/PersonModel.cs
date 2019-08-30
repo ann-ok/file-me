@@ -1,10 +1,9 @@
-﻿using FileMe.DAL.Classes;
+﻿using FileMe.Binders;
+using FileMe.DAL.Classes;
 using FileMe.Validation;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Web.Mvc;
 
 namespace FileMe.Models
 {
@@ -17,7 +16,7 @@ namespace FileMe.Models
         [Required]
         [Login(ErrorMessage = "Пользователь с таким логином уже существует")]
         [DisplayName("Логин")]
-        public string Login { get; set; }
+        public string UserName { get; set; }
 
         [Required]
         [Email(ErrorMessage = "Пользователь с таким адресом уже существует")]
@@ -25,7 +24,7 @@ namespace FileMe.Models
         public string Email { get; set; }
 
         [Required]
-        [Password(8, ErrorMessage = "Пароль должен иметь больше 8 символов")]
+        //[Password(8, ErrorMessage = "Пароль должен иметь больше 8 символов")]
         [DataType(DataType.Password)]
         [DisplayName("Пароль")]
         public string Password { get; set; }
@@ -41,5 +40,8 @@ namespace FileMe.Models
         public string GroupName { get; set; }
 
         public DateTime CreationDate { get; set; }
+
+        [DataType(DataType.Upload)]
+        public BinaryFileWrapper AvatarFile { get; set; }
     }
 }

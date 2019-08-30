@@ -12,8 +12,9 @@ namespace FileMe.Models
         public string Name { get; set; }
 
         public long? ParentId { get; set; }
-
+        /*
         [DataType(DataType.Upload)]
         public HttpPostedFileWrapper File { get; set; }
+        */
     }
 }

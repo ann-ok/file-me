@@ -1,18 +1,29 @@
-﻿using FileMe.DAL.Classes;
+﻿using FileMe.Authorization;
+using FileMe.Binders;
+using FileMe.DAL.Classes;
 using FileMe.DAL.Filters;
 using FileMe.DAL.Repositories;
 using FileMe.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
 using System.Net;
+using System.Web;
 using System.Web.Mvc;
 
 namespace FileMe.Controllers
 {
-    public class PersonController : Controller
+    public class PersonController : BaseController
     {
         private PersonRepository personRepository;
         private GroupRepository groupRepository;
+
+        //работа с пользователем идёт через менеджера
+        public UserManager UserManager
+        {
+            get { return HttpContext.GetOwinContext().GetUserManager<UserManager>(); }
+        }
 
         public PersonController(PersonRepository personRepository, GroupRepository groupRepository)
         {
@@ -60,18 +71,29 @@ namespace FileMe.Controllers
             }
 
             Group group = groupRepository.Get(model.GroupName, "Name");
+
             var person = new Person(group)
             {
                 FIO = model.FIO,
-                Login = model.Login,
+                UserName = model.UserName,
                 Email = model.Email,
-                Password = model.Password,
                 CreationDate = DateTime.Now,
+                AvatarFile = model.AvatarFile != null ? model.AvatarFile.BinaryFile : null,
             };
 
-            personRepository.Save(person);
+            var res = UserManager.CreateAsync(person, model.Password);
 
-            return RedirectToAction("Index");
+            if (res.Result == IdentityResult.Success)
+            {
+                if (model.AvatarFile != null)
+                {
+                    GetFileProvider().Save(model.AvatarFile.BinaryFile, model.AvatarFile.PostedFile.InputStream);
+                }
+
+                return RedirectToAction("Index");
+            }
+
+            return View(model);
         }
 
         public ActionResult Info(long? id)
@@ -91,10 +113,11 @@ namespace FileMe.Controllers
             var model = new PersonModel()
             {
                 FIO = person.FIO,
-                Login = person.Login,
+                UserName = person.UserName,
                 Email = person.Email,
                 GroupName = person.Group.Name,
                 CreationDate = person.CreationDate,
+                AvatarFile = new BinaryFileWrapper{ BinaryFile = person.AvatarFile },
             };
 
             return View(model);
@@ -124,10 +147,11 @@ namespace FileMe.Controllers
             var model = new PersonModel()
             {
                 FIO = person.FIO,
-                Login = person.Login,
+                UserName = person.UserName,
                 Email = person.Email,
                 GroupName = person.Group.Name,
                 CreationDate = person.CreationDate,
+                AvatarFile = new BinaryFileWrapper { BinaryFile = person.AvatarFile },
             };
 
             return View(model);
@@ -153,11 +177,12 @@ namespace FileMe.Controllers
             Group group = groupRepository.Get(model.GroupName, "Name");
 
             person.FIO = model.FIO;
-            person.Login = model.Login;
+            person.UserName = model.UserName;
             person.Email = model.Email;
             person.Password = model.Password;
             person.CreationDate = DateTime.Now;
             person.Group = group;
+            person.AvatarFile = model.AvatarFile != null ? model.AvatarFile.BinaryFile : null;
 
             try
             {
@@ -187,7 +212,7 @@ namespace FileMe.Controllers
             var model = new PersonModel()
             {
                 FIO = person.FIO,
-                Login = person.Login,
+                UserName = person.UserName,
                 Email = person.Email,
                 GroupName = person.Group.Name,
                 CreationDate = person.CreationDate,

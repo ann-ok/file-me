@@ -1,6 +1,6 @@
 ﻿namespace FileMe.DAL.Filters
 {
-    public class DctFilter: BaseFilter
+    public class DctFilter: FolderFilter
     {
     }
 }

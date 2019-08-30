@@ -1,6 +1,4 @@
 ﻿namespace FileMe.DAL.Repositories
 {
-    public interface IRepository
-    {
-    }
+    public interface IRepository { }
 }

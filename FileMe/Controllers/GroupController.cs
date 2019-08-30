@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace FileMe.Controllers
 {
+    [Authorize]
     public class GroupController: Controller
     {
         private GroupRepository groupRepository;
@@ -48,7 +49,14 @@ namespace FileMe.Controllers
 
             groupRepository.Save(group);
 
-            return RedirectToAction("Index");
+            return RedirectToAction("SortLink");
+        }
+
+        public ActionResult SortLink()
+        {
+            var model = new SortLinkModel();
+
+            return View(model);
         }
 
         public ActionResult Edit(long? id)

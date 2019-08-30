@@ -1,5 +1,15 @@
 ﻿@model FileMe.Models.SortLinkModel
 
+@{ 
+    var currentFolderId = ViewData["CurrentFolderId"];
+    if (currentFolderId != null)
+    {
+        Model.RouteValues.Add("parent", currentFolderId);
+    }
+    Model.RouteValues["First"] = 1;
+    Model.RouteValues["Count"] = 3;
+}
+
 <a href="@Url.Action(Model.Action, Model.Controller, Model.RouteValues)">
     @Model.LinkText
     @if (Model.SortDirection.HasValue)
