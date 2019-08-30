@@ -216,6 +216,8 @@
     <Content Include="Content\Images\change.svg" />
     <EmbeddedResource Include="Content\Images\down.png" />
     <EmbeddedResource Include="Content\Images\up.png" />
+    <Content Include="Content\Images\file.png" />
+    <Content Include="Content\Images\folder.png" />
     <Content Include="Content\Styles\Site.css" />
     <Content Include="Global.asax" />
     <Content Include="libman.json" />
@@ -277,6 +279,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\BinaryFileController.cs" />
+    <Compile Include="Controllers\DctController.cs" />
     <Compile Include="Controllers\FolderController.cs" />
     <Compile Include="Controllers\GroupController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -290,6 +293,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\StreamHelper.cs" />
+    <Compile Include="Models\DctModel.cs" />
     <Compile Include="Models\EntityListModel.cs" />
     <Compile Include="Models\EntityModel.cs" />
     <Compile Include="Models\FolderListModel.cs" />
@@ -343,6 +347,7 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\BinaryFileWrapper.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\BinaryFileWrapper.cshtml" />
+    <Content Include="Views\Dct\Create.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

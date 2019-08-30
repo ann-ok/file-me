@@ -5,15 +5,18 @@
         Model.CurrentFolder.Name :
         "Хранилище документов";
     var parentId = Model.CurrentFolder != null ? Model.CurrentFolder.Id : (long?)null;
-
-    ViewBag.Page = Model.CurrentPage;
 }
 
 <h2>Список файлов и папок</h2>
 
-<p>
-    @Html.ActionLink("Создать папку", "Create", new { parent = parentId })
-</p>
+<div>
+    <div>
+        @Html.ActionLink("Создать папку", "Create", new { parent = parentId })
+    </div>
+    <div>
+        @Html.ActionLink("Создать файл", "Create", "Dct", new { parent = parentId }, new { @class = "create-dct" } )
+    </div>
+</div>
 
 @Html.Partial("Filter", new FolderFilter())
 

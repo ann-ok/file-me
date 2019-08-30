@@ -28,21 +28,35 @@
     @foreach (var item in Model)
     {
         <tr>
-            <td>
-                @Html.ActionLink(item.Name, "Index", new { parent = item.Id }, null)
-            </td>
-            <div>
-
+            @if (!item.IsFile)
+            {
                 <td>
-                    @Html.DisplayFor(modelItem => item.CreationDate)
+                    <img style="width: 25px; height: 25px;" src="~/Content/images/folder.png" />
+                    @Html.ActionLink(item.Name, "Index", new { parent = item.Id }, null)
                 </td>
-            </div>
+                <td>
+                    <div>
+                        @Html.DisplayFor(modelItem => item.CreationDate)
+                    </div>
+                </td>
+            }
         </tr>
     }
-
+    @foreach (var item in Model)
+    {
+        <tr>
+            @if (item.IsFile)
+            {
+                <td>
+                    <img style="width: 25px; height: 25px;" src="~/Content/images/file.png" />
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    <div>
+                        @Html.DisplayFor(modelItem => item.CreationDate)
+                    </div>
+                </td>
+            }
+        </tr>
+    }
 </table>
-
-<div>
-    @Html.ActionLink("Назад", "Index", new { page = ViewBag.Page - 1 })
-    @Html.ActionLink("Вперед", "Index", new { page = ViewBag.Page + 1 })
-</div>

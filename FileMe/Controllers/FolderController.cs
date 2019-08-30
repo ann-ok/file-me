@@ -3,7 +3,6 @@ using FileMe.DAL.Filters;
 using FileMe.DAL.Repositories;
 using FileMe.Models;
 using System;
-using System.Collections.Generic;
 using System.Web.Mvc;
 
 namespace FileMe.Controllers
@@ -12,25 +11,14 @@ namespace FileMe.Controllers
     public class FolderController : Controller
     {
         private FolderRepository folderRepository;
-        //private DctRepository dctRepository;
 
-        public FolderController(FolderRepository folderRepository)//, DctRepository dctRepository)
+        public FolderController(FolderRepository folderRepository)
         {
             this.folderRepository = folderRepository;
-            //this.dctRepository = dctRepository;
         }
 
-        public ActionResult Index(long? parent, FetchOptoins fetchOptions, int page = 1)//, FolderFilter folderFilter, DctFilter dctFilter)
+        public ActionResult Index(long? parent, FetchOptoins fetchOptions)
         {
-            int pageSize = 5;
-
-            if (page != 1)
-            {
-                fetchOptions.First = (page - 1) * pageSize + 1;
-            }
-
-            fetchOptions.Count = pageSize;
-
             Folder parentFolder = null;
 
             if (parent.HasValue)
@@ -43,35 +31,10 @@ namespace FileMe.Controllers
                 Items = folderRepository.Find(new FolderFilter { Parent = parentFolder }, fetchOptions),
                 CurrentFolder = parentFolder,
                 Parent = parentFolder != null ? parentFolder.Parent : null,
-                CurrentPage = page,
             };
 
             model.IsRootFolder = parent == null && model.Parent == null;
             return View("Index", model);
-            /*
-            Folder parentFolder = null;
-
-            if (parent.HasValue)
-            {
-                parentFolder = folderRepository.Load(parent.Value);
-            }
-
-            folderFilter.Parent = parentFolder;
-
-            List<Folder> listFolder = (List<Folder>)folderRepository.Find(folderFilter, fetchOptoins);
-            listFolder.AddRange((List<Folder>)dctRepository.Find(dctFilter, fetchOptoins));
-
-            var model = new FolderListModel
-            {
-                Items = listFolder,
-                CurrentFolder = parentFolder,
-                Parent = parentFolder != null ? parentFolder.Parent : null,
-            };
-
-            model.IsRootFolder = (parent == null && model.Parent == null);
-
-            return View(model);
-            */
         }
 
         public ActionResult Create(long? parent)

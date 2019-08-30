@@ -17,14 +17,14 @@ namespace FileMe.Controllers
             this.groupRepository = groupRepository;
         }
 
-        public ActionResult Index(GroupFilter filter, FetchOptoins fetchOptoins, int page = 1)
+        public ActionResult Index(GroupFilter filter, FetchOptoins fetchOptoins, int page = 0)
         {
             int pageSize = 5;
 
-            if (page != 1)
-            {
-                fetchOptoins.First = (page - 1) * pageSize + 1;
-            }
+            if (page < 0)
+                page = 0;
+
+            fetchOptoins.First = page * pageSize;
 
             fetchOptoins.Count = pageSize;
 

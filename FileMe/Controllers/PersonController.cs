@@ -35,10 +35,10 @@ namespace FileMe.Controllers
         {
             int pageSize = 5;
 
-            if (page != 1)
-            {
-                fetchOptoins.First = (page - 1) * pageSize + 1;
-            }
+            if (page < 0)
+                page = 0;
+
+            fetchOptoins.First = page * pageSize;
 
             fetchOptoins.Count = pageSize;
 

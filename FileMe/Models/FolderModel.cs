@@ -1,7 +1,6 @@
 ﻿using FileMe.DAL.Classes;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Web;
 
 namespace FileMe.Models
 {
@@ -12,9 +11,5 @@ namespace FileMe.Models
         public string Name { get; set; }
 
         public long? ParentId { get; set; }
-        /*
-        [DataType(DataType.Upload)]
-        public HttpPostedFileWrapper File { get; set; }
-        */
     }
 }

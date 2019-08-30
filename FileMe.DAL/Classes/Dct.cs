@@ -2,6 +2,8 @@
 {
     public class Dct : Folder
     {
-        public virtual string DctFile { get; set; }
+        public virtual string Type { get; set; }
+
+        public override bool IsFile => true;
     }
 }
