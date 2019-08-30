@@ -20,19 +20,32 @@ namespace FileMe.Controllers
             //this.dctRepository = dctRepository;
         }
 
-        public ActionResult Index(long? parent, FetchOptoins fetchOptions)//, FolderFilter folderFilter, DctFilter dctFilter)
+        public ActionResult Index(long? parent, FetchOptoins fetchOptions, int page = 1)//, FolderFilter folderFilter, DctFilter dctFilter)
         {
+            int pageSize = 5;
+
+            if (page != 1)
+            {
+                fetchOptions.First = (page - 1) * pageSize + 1;
+            }
+
+            fetchOptions.Count = pageSize;
+
             Folder parentFolder = null;
+
             if (parent.HasValue)
             {
                 parentFolder = folderRepository.Load(parent.Value);
             }
+
             var model = new FolderListModel
             {
-                Items = folderRepository.Find(new FolderFilter { Parent = parentFolder }),//, fetchOptions),
+                Items = folderRepository.Find(new FolderFilter { Parent = parentFolder }, fetchOptions),
                 CurrentFolder = parentFolder,
-                Parent = parentFolder != null ? parentFolder.Parent : null
+                Parent = parentFolder != null ? parentFolder.Parent : null,
+                CurrentPage = page,
             };
+
             model.IsRootFolder = parent == null && model.Parent == null;
             return View("Index", model);
             /*

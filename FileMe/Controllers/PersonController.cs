@@ -31,11 +31,21 @@ namespace FileMe.Controllers
             this.groupRepository = groupRepository;
         }
 
-        public ActionResult Index(PersonFilter filter)
+        public ActionResult Index(PersonFilter filter, FetchOptoins fetchOptoins, int page = 1)
         {
+            int pageSize = 5;
+
+            if (page != 1)
+            {
+                fetchOptoins.First = (page - 1) * pageSize + 1;
+            }
+
+            fetchOptoins.Count = pageSize;
+
             var model = new PersonListModel
             {
-                Items = personRepository.Find(filter)
+                Items = personRepository.Find(filter, fetchOptoins),
+                CurrentPage = page,
             };
 
             return View(model);
@@ -147,8 +157,6 @@ namespace FileMe.Controllers
             var model = new PersonModel()
             {
                 FIO = person.FIO,
-                UserName = person.UserName,
-                Email = person.Email,
                 GroupName = person.Group.Name,
                 CreationDate = person.CreationDate,
                 AvatarFile = new BinaryFileWrapper { BinaryFile = person.AvatarFile },

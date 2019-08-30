@@ -298,6 +298,7 @@
     <Compile Include="Models\GroupModel.cs" />
     <Compile Include="Models\HomeModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
+    <Compile Include="Models\PageInfoModel.cs" />
     <Compile Include="Models\PersonModel.cs" />
     <Compile Include="Models\PersonListModel.cs" />
     <Compile Include="Models\SortLinkModel.cs" />

@@ -6,5 +6,6 @@ namespace FileMe.Models
     {
         public IList<T> Items { get; set; }
 
+        public int CurrentPage { get; set; }
     }
 }

@@ -6,8 +6,6 @@
     {
         Model.RouteValues.Add("parent", currentFolderId);
     }
-    Model.RouteValues["First"] = 1;
-    Model.RouteValues["Count"] = 3;
 }
 
 <a href="@Url.Action(Model.Action, Model.Controller, Model.RouteValues)">

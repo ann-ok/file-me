@@ -19,7 +19,7 @@ namespace FileMe.Files
 
         public Stream Load(BinaryFile file)
         {
-            var content = binaryFileContentRepository.Get("BinaryFile", file);
+            var content = binaryFileContentRepository.GetByBinaryFile(file);
 
             if (content == null || content.Content == null)
             {

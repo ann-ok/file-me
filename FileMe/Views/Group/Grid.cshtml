@@ -1,10 +1,6 @@
 ﻿@using FileMe.Extensions
 @model IEnumerable<FileMe.DAL.Classes.Group>
 
-@{
-        
-}
-
 <table class="table">
     <tr>
         <th>
@@ -27,8 +23,8 @@
 </table>
 
 <div>
-    @Html.SortLink("Вперед", "", "Index", "Group", null)
-    @Html.SortLink("Назад", "", "Index", "Group", null)
+    @Html.ActionLink("Назад", "Index", new { page = ViewBag.Page - 1 })
+    @Html.ActionLink("Вперед", "Index", new { page = ViewBag.Page + 1 })
 </div>
 
 

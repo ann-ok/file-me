@@ -5,6 +5,8 @@
         Model.CurrentFolder.Name :
         "Хранилище документов";
     var parentId = Model.CurrentFolder != null ? Model.CurrentFolder.Id : (long?)null;
+
+    ViewBag.Page = Model.CurrentPage;
 }
 
 <h2>Список файлов и папок</h2>

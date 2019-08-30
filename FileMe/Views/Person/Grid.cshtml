@@ -1,54 +1,62 @@
-﻿@model IEnumerable<FileMe.DAL.Classes.Person>
+﻿@using FileMe.Extensions
+@model IEnumerable<FileMe.DAL.Classes.Person>
 
 <table class="table">
     <tr>
         <th>
-            Лоигн
+            @Html.SortLink("Логин", "UserName", "Index", "Person", null)
         </th>
         <th>
             Группа
         </th>
         <th>
-            ФИО
+            @Html.SortLink("ФИО", "FIO", "Index", "Person", null)
         </th>
         <th>
-            Email
+            @Html.SortLink("Email", "Email", "Index", "Person", null)
         </th>
         <th>
-            Дата создания
+            @Html.SortLink("Дата создания", "CreationDate", "Index", "Person", null)
         </th>
+        <th>Аватар</th>
         <th></th>
     </tr>
 
     @foreach (var item in Model)
     {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Group.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FIO)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @item.CreationDate.ToShortDateString()
-        </td>
-        <td>
-            @if (item.AvatarFile != null)
-            {
-                <img src="@Url.Action("Download", "BinaryFile", new { id = item.AvatarFile.Id })" style="width:24px;"   />                    
-            }
-        </td>
-        <td>
-            @Html.ActionLink("Редактировать", "Edit", new { id = item.Id }) |
-            @Html.ActionLink("Информация", "Info", new { id = item.Id }) |
-            @Html.ActionLink("Удалить", "Delete", new { id = item.Id })
-        </td>
-    </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Group.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FIO)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @item.CreationDate.ToShortDateString()
+            </td>
+            <td>
+                @if (item.AvatarFile != null)
+                {
+                    <img src="@Url.Action("Download", "BinaryFile", new { id = item.AvatarFile.Id })" style="width:24px;" />
+                }
+            </td>
+            <td>
+                @Html.ActionLink("Редактировать", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Информация", "Info", new { id = item.Id }) |
+                @Html.ActionLink("Удалить", "Delete", new { id = item.Id })
+            </td>
+        </tr>
     }
 </table>
+
+
+<div>
+    @Html.ActionLink("Назад", "Index", new { page = ViewBag.Page - 1 })
+    @Html.ActionLink("Вперед", "Index", new { page = ViewBag.Page + 1 })
+</div>

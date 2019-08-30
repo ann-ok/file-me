@@ -4,6 +4,7 @@ using FileMe.DAL.Repositories;
 using FileMe.Models;
 using Microsoft.AspNet.Identity;
 using System;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
@@ -92,5 +93,29 @@ namespace FileMe.Extensions
             }
             return "Выйти";
         }
+
+        /*
+        public static MvcHtmlString PageLinks(this HtmlHelper html,
+                Func<int, string> pageUrl)
+        {
+            StringBuilder result = new StringBuilder();
+
+            for (int i = 1; i <= w; i++)
+            {
+                TagBuilder tag = new TagBuilder("a");
+                tag.MergeAttribute("href", pageUrl(i));
+                tag.InnerHtml = i.ToString();
+                // если текущая страница, то выделяем ее,
+                // например, добавляя класс
+                if (i == pageInfo.PageNumber)
+                {
+                    tag.AddCssClass("selected");
+                    tag.AddCssClass("btn-primary");
+                }
+                tag.AddCssClass("btn btn-default");
+                result.Append(tag.ToString());
+            }
+            return MvcHtmlString.Create(result.ToString());
+        }*/
     }
 }

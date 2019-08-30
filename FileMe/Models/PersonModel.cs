@@ -19,7 +19,7 @@ namespace FileMe.Models
         public string UserName { get; set; }
 
         [Required]
-        [Email(ErrorMessage = "Пользователь с таким адресом уже существует")]
+        //[Email(ErrorMessage = "Пользователь с таким адресом уже существует")]
         [EmailAddress]
         public string Email { get; set; }
 

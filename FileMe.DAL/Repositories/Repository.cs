@@ -89,11 +89,11 @@ namespace FileMe.DAL.Repositories
             return count > 0;
         }
 
-        public T Get(string fieldName, object field)
+        public T Get(string field, string fieldName)
         {
-            var crit = session.CreateCriteria<T>()
-                .Add(Restrictions.Eq(fieldName, field));
-            return crit.UniqueResult<T>();
+            var crit = session.CreateCriteria<T>().Add(Restrictions.Eq(fieldName, field));
+            var list = crit.List<T>();
+            return list[0];
 
         }
 
