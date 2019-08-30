@@ -1,2 +1,4 @@
 1) Биндеры - https://metanit.com/sharp/mvc5/9.4.php
 https://professorweb.ru/my/ASP_NET/mvc/level7/7_3.php
+
+2)ссылки в шапке http://qaru.site/questions/371783/aspnet-mvc-current-page-highlighting-in-navigation

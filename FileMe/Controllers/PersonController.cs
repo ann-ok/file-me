@@ -31,7 +31,7 @@ namespace FileMe.Controllers
             this.groupRepository = groupRepository;
         }
 
-        public ActionResult Index(PersonFilter filter, FetchOptoins fetchOptoins, int page = 1)
+        public ActionResult Index(PersonFilter filter, FetchOptoins fetchOptoins, int page = 0)
         {
             int pageSize = 5;
 
